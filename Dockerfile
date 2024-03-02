@@ -4,26 +4,8 @@ FROM ubuntu:${BASE_VERSION} AS base
 
 RUN apt-get update && apt-get install 
 
-#RUN apt-get install -y git \
-#                       cmake \
-#                       ninja-build \
-#                       clang \
-#                       python \
-#                       uuid-dev \
-#                       libicu-dev \
-#                       icu-devtools \
-#                       libedit-dev \
-#                       libxml2-dev \
-#                       libsqlite3-dev \
-#                       swig \
-#                       libpython2-dev \
-#                       python-six \
-#                       libncurses5-dev \
-#                       pkg-config \
-#                       libcurl4-openssl-dev \
-#                       systemtap-sdt-dev \
-#                       tzdata \
-#                       rsync
+# setup env for package installation
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 
 RUN apt-get install -y git \
                        cmake \
@@ -35,8 +17,16 @@ RUN apt-get install -y git \
                        icu-devtools \
                        libedit-dev \
                        libxml2-dev \
-                       libsqlite3-dev
-
+                       libsqlite3-dev \
+                       swig \
+                       libpython2-dev \
+                       python-six \
+                       libncurses5-dev \
+                       pkg-config \
+                       libcurl4-openssl-dev \
+                       systemtap-sdt-dev \
+                       tzdata \
+                       rsync
 
 RUN mkdir swift-source && cd swift-source
 
@@ -51,6 +41,3 @@ RUN cd /opt && \
     cd swift && \
     mkdir swift-5.10-dev && \
     cd swift-5.10-dev
-
-
-
