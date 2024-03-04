@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  swift_playground:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swift_playground
+    command: bash -c "
+        swift build --package-path /code &&
+        echo ----------------------------------- &&
+        ./code/.build/debug/code
+        "
+    volumes:
+      - C:\\projectbins\\swift-ubuntu20.04-env\\code:/code
